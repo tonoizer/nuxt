@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * Host catch-all for the remote Bridge app (`remote/export-app`).
+ * Host catch-all for the remote Bridge app (`remote/bridge/export-app`).
  *
  * Route path uses Vue Router's `:pathMatch(.*)*` so current bridge-vue3
  * basename auto-detect works. Prefer explicit `basename: '/bridge'` once
@@ -9,7 +9,7 @@
 import { createRemoteAppComponent } from "@module-federation/bridge-vue3";
 
 const RemoteBridgeApp = createRemoteAppComponent({
-  loader: () => import("remote/export-app"),
+  loader: () => import("remote/bridge/export-app"),
   // After module-federation/core#4984, prefer: basename: '/bridge'
   asyncComponentOptions: {
     suspensible: false,

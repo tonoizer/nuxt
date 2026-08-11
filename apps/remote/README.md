@@ -6,7 +6,7 @@ This Nuxt application provides Vue components to the host example and runs stand
 - Host consumer: `http://localhost:4173`
 - Configuration: [`nuxt.config.ts`](nuxt.config.ts)
 - Exposed components: [`app/components/exposed`](app/components/exposed)
-- Bridge app export: [`app/export-app.ts`](app/export-app.ts) → `./export-app`
+- Bridge app export: [`app/export-app.ts`](app/export-app.ts) → `./bridge/export-app`
 
 ## Run
 
@@ -38,9 +38,9 @@ To add another auto-registered component, create `app/components/exposed/Example
 
 In addition to components, this remote exposes an application-level Bridge module:
 
-- `./export-app` — `createBridgeComponent` wrapping a small vue-router app under `app/bridge/`
+- `./bridge/export-app` — `createBridgeComponent` wrapping a small vue-router app under `app/bridge/`
 
-Hosts load it with `@module-federation/bridge-vue3` `createRemoteAppComponent` (see host `/bridge/*`). The same `./export-app` can be consumed from React/Next via `@module-federation/bridge-react`.
+Hosts load it with `@module-federation/bridge-vue3` `createRemoteAppComponent` (see host `/bridge/*`). The same Bridge export can be consumed from React/Next via `@module-federation/bridge-react`. Use a slashed expose name so host manifest discovery does not treat it as a Vue component.
 
 ## Federation assets
 

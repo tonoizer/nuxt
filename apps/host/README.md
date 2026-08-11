@@ -49,7 +49,7 @@ The page consumes it like any other Nuxt component:
 
 ### Bridge application remote
 
-`/bridge/*` mounts `remote/export-app` via `@module-federation/bridge-vue3` (`createRemoteAppComponent`) as a client-only island. Component federation on `/` is unchanged. The host registers a Vue Router catch-all (`/bridge/:pathMatch(.*)*`) so basename auto-detect works with current `bridge-vue3` releases.
+`/bridge/*` mounts `remote/bridge/export-app` via `@module-federation/bridge-vue3` (`createRemoteAppComponent`) as a client-only island. Component federation on `/` is unchanged. The host registers a Vue Router catch-all (`/bridge/:pathMatch(.*)*`) so basename auto-detect works with current `bridge-vue3` releases.
 
 ## SSR behavior
 

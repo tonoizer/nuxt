@@ -131,13 +131,13 @@ moduleFederation: {
   config: {
     name: "catalog",
     exposes: {
-      "./export-app": "./app/export-app.ts",
+      "./bridge/export-app": "./app/export-app.ts",
     },
   },
 }
 ```
 
-Hosts load it with `createRemoteAppComponent` from `@module-federation/bridge-vue3` (or `@module-federation/bridge-react` for React/Next). Prefer an explicit `basename` and a host catch-all route such as `/catalog/:pathMatch(.*)*`. See the example apps under `apps/host` and `apps/remote`.
+Hosts load it with `createRemoteAppComponent` from `@module-federation/bridge-vue3` (or `@module-federation/bridge-react` for React/Next). Prefer an explicit `basename` and a host catch-all route such as `/catalog/:pathMatch(.*)*`. Use a slashed expose name (e.g. `./bridge/export-app`) so host manifest discovery does not register the Bridge factory as a Nuxt component. See the example apps under `apps/host` and `apps/remote`.
 
 ## Server rendering
 
