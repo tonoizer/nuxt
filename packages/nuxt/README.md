@@ -110,6 +110,35 @@ With multiple configured remotes, the remote name is included to prevent collisi
 
 Only expose names beginning with a letter and containing letters, numbers, underscores, or hyphens are registered as Nuxt components. Other MF exposes remain available through normal runtime imports.
 
+### Bridge application export (optional)
+
+To expose a full routing app (not only components), add a Bridge entry and list it under `config.exposes`:
+
+```ts
+// app/export-app.ts
+import { createBridgeComponent } from "@module-federation/bridge-vue3";
+import App from "./bridge/App.vue";
+import { createBridgeRouter } from "./bridge/router";
+
+export default createBridgeComponent({
+  rootComponent: App,
+  appOptions: () => ({ router: createBridgeRouter() }),
+});
+```
+
+```ts
+moduleFederation: {
+  config: {
+    name: "catalog",
+    exposes: {
+      "./export-app": "./app/export-app.ts",
+    },
+  },
+}
+```
+
+Hosts load it with `createRemoteAppComponent` from `@module-federation/bridge-vue3` (or `@module-federation/bridge-react` for React/Next). Prefer an explicit `basename` and a host catch-all route such as `/catalog/:pathMatch(.*)*`. See the example apps under `apps/host` and `apps/remote`.
+
 ## Server rendering
 
 `ssr` defaults to `true`. When Nuxt SSR is enabled, the module creates client and server federation builds:

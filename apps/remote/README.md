@@ -6,6 +6,7 @@ This Nuxt application provides Vue components to the host example and runs stand
 - Host consumer: `http://localhost:4173`
 - Configuration: [`nuxt.config.ts`](nuxt.config.ts)
 - Exposed components: [`app/components/exposed`](app/components/exposed)
+- Bridge app export: [`app/export-app.ts`](app/export-app.ts) → `./export-app`
 
 ## Run
 
@@ -33,6 +34,14 @@ The port is fixed because the host configuration points to `4174`.
 
 To add another auto-registered component, create `app/components/exposed/Example.vue`. After restarting the applications, a single-remote host can render it as `<RemoteExample />`.
 
+### Bridge application export
+
+In addition to components, this remote exposes an application-level Bridge module:
+
+- `./export-app` — `createBridgeComponent` wrapping a small vue-router app under `app/bridge/`
+
+Hosts load it with `@module-federation/bridge-vue3` `createRemoteAppComponent` (see host `/bridge/*`). The same `./export-app` can be consumed from React/Next via `@module-federation/bridge-react`.
+
 ## Federation assets
 
 Development and production serve the federation contract from the public root:
@@ -52,4 +61,4 @@ pnpm build
 pnpm preview
 ```
 
-Verify all three federation URLs above return successfully, then open the host at `http://localhost:4173`. Its initial HTML should already include both remote components, and their counters should become interactive after hydration.
+Verify all three federation URLs above return successfully, then open the host at `http://localhost:4173`. Its initial HTML should already include both remote components, and their counters should become interactive after hydration. Open `/bridge` to exercise the Bridge remote (client island).

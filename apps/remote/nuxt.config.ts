@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       filename: "remoteEntry.js",
       remotes: {},
       manifest: true,
+      exposes: {
+        // App-level Bridge export (in addition to auto component exposes)
+        "./export-app": "./app/export-app.ts",
+      },
     },
   },
   vite: {
