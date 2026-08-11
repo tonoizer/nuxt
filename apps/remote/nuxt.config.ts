@@ -16,8 +16,9 @@ export default defineNuxtConfig({
       remotes: {},
       manifest: true,
       exposes: {
-        // App-level Bridge export (in addition to auto component exposes)
-        "./export-app": "./app/export-app.ts",
+        // Slash in the expose name keeps Bridge exports out of component
+        // auto-registration (host manifest discovery).
+        "./bridge/export-app": "./app/export-app.ts",
       },
     },
   },
