@@ -112,7 +112,13 @@ Only expose names beginning with a letter and containing letters, numbers, under
 
 ### Bridge application export (optional)
 
-To expose a full routing app (not only components), add a Bridge entry and list it under `config.exposes`:
+To expose a full routing app (not only components), install the Bridge Vue 3 adapter and its router peer, then add a Bridge entry and list it under `config.exposes`:
+
+```sh
+pnpm add @module-federation/bridge-vue3@2.8.2 vue-router@5.2.0
+```
+
+Nuxt `4.5.1` requires `vue-router@^5.2.0`. The latest published `@module-federation/bridge-vue3` is `2.8.2` and declares the older `vue-router@4` peer, so this Nuxt example intentionally keeps Nuxt's required Router 5 rather than silently installing or suppressing a conflicting peer. Bridge 2.8.2 uses the Router APIs shared by these versions; the example's Playwright coverage verifies the `/bridge` basename and child navigation. For a non-Nuxt host, follow the adapter's declared peer contract and use Vue Router 4.
 
 ```ts
 // app/export-app.ts
