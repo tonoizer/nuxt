@@ -137,7 +137,7 @@ moduleFederation: {
 }
 ```
 
-Hosts load it with `createRemoteAppComponent` from `@module-federation/bridge-vue3` (or `@module-federation/bridge-react` for React/Next). Prefer an explicit `basename` and a host catch-all route such as `/catalog/:pathMatch(.*)*`. Use a slashed expose name (e.g. `./bridge/export-app`) so host manifest discovery does not register the Bridge factory as a Nuxt component. See the example apps under `apps/host` and `apps/remote`.
+Hosts load it with `createRemoteAppComponent` from `@module-federation/bridge-vue3` (or `@module-federation/bridge-react` for React/Next). Use a host catch-all such as `/catalog/:pathMatch(.*)*` so current `bridge-vue3` basename auto-detect works. An explicit `basename` option is tracked in [module-federation/core#4984](https://github.com/module-federation/core/pull/4984). Use a slashed expose name (e.g. `./bridge/export-app`) so host manifest discovery does not register the Bridge factory as a Nuxt component. See the example apps under `apps/host` and `apps/remote`.
 
 ## Server rendering
 
